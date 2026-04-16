@@ -6,7 +6,7 @@ rule react-native-block-unsafe-patterns {
   priority 90
   severity error
   DENY write
-  IF path GLOB "**/*" AND content CONTAINS "UNSAFE_react-native_PATTERN"
+  IF path GLOB "**/*" AND content CONTAINS "dangerouslySetInnerHTML"
   MESSAGE "Blocked an unsafe pattern in react-native. Use the recommended best practices for 2025/2026."
 }
 
@@ -14,7 +14,7 @@ rule react-native-force-updated-api {
   enabled true
   priority 80
   severity warning
-  ASK write
-  IF path GLOB "**/*" AND content CONTAINS "OLD_react-native_API"
+  LOG write
+  IF path GLOB "**/*" AND content CONTAINS "AsyncStorage"
   MESSAGE "You are using an outdated API for react-native. Please upgrade to the newer API."
 }
